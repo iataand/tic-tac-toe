@@ -44,7 +44,6 @@ export default function GamePage() {
   let query = useQuery();
   const [grid, setGrid] = useState(["", "", "", "", "", "", "", "", ""]);
   const [currentPlayer, setCurrentPlayer] = useState<"X" | "0">("X");
-  const [score, setScore] = useState({ player1: 0, player2: 0 });
 
   const checkWinner = () => {
     if (grid[0] === grid[1] && grid[1] === grid[2] && grid[0] !== "") {
@@ -94,7 +93,7 @@ export default function GamePage() {
     let newGrid = [...grid];
     newGrid[index] = currentPlayer;
     setGrid(newGrid);
-    setCurrentPlayer(currentPlayer === "X" ? "0" : "X");
+    setCurrentPlayer((prevPlayer) => (prevPlayer === "X" ? "0" : "X"));
   };
 
   const handleRestart = () => {
